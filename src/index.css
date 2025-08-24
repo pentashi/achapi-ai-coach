@@ -1,0 +1,20 @@
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #121212 !important;
+  color: #7fffd4;
+}
+
+/* index.css or wherever your styles are */
+.glass-card {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+}
+.glass-card:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+}
