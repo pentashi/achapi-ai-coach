@@ -1,6 +1,9 @@
 export async function generateWorkoutPlan(profile) {
   try {
-    const res = await fetch("http://localhost:4000/generate-workout", {
+    // Use environment variable for API URL; fallback to localhost for dev
+    const API_URL = import.meta.env.VITE_API_URL ;
+
+    const res = await fetch(`${API_URL}/generate-workout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -8,24 +11,21 @@ export async function generateWorkoutPlan(profile) {
       body: JSON.stringify({ profile }),
     });
 
-    const rawText = await res.text(); // use .text() instead of .json()
-    console.log("🔹 RAW AI RESPONSE:", rawText); // 👈 LOGGING RAW AI RESPONSE HERE
+    const rawText = await res.text(); // use .text() to capture raw response
+    console.log("🔹 RAW AI RESPONSE:", rawText); // debug log
 
-    // Optional: quick check for 500 error
     if (!res.ok) {
       console.error("❌ Server error:", res.status);
       throw new Error(`Server error: ${res.status}`);
     }
 
-    // Try to find first JSON block inside the response
-    const match = rawText.match(/\{[\s\S]*\}/); // naive but effective
+    // Extract first JSON object from response
+    const match = rawText.match(/\{[\s\S]*\}/);
     if (!match) {
       throw new Error("No JSON found in AI response");
     }
 
-    const jsonOnly = match[0];
-    const parsed = JSON.parse(jsonOnly);
-
+    const parsed = JSON.parse(match[0]);
     return parsed;
   } catch (err) {
     console.error("❌ generateWorkoutPlan() error:", err.message);
