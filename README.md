@@ -109,4 +109,4 @@ Advanced analytics dashboard for progress tracking
 Dark mode & enhanced AI coaching tips
 
 👨‍💻 Author
-Your Name — Software Engineer | Remote Full-Stack Dev | AI & Fitness Enthusiast
+MBONGWE BRANDON EGBE — Software Engineer | Remote Full-Stack Dev | AI & Fitness Enthusiast
